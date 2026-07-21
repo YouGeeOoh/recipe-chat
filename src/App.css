@@ -1,7 +1,7 @@
 .container{
   height: auto;
   width: 100%;
-  padding: .5rem;
+  /* padding: .5rem; */
   display: flex;
   flex-direction: row;
   /* background-color: rgb(215, 232, 247); */
@@ -162,25 +162,44 @@ li{
 .cancel{
   display: flex;
   color: rgb(182, 60, 60);
- align-self: right;
- cursor: pointer;
+  align-self: right;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 0 0 .5rem;
+  /* height: 1rem;
+  width: 1rem; */
 }
 
 .history-card{
   width: 10rem;
-  height: 3rem;
+  height: auto;
   padding: .5rem;
   border: none;
   background-color:aliceblue ;
   border-radius: .5rem;
   display: flex;
   justify-content: center;
-  cursor: pointer;
+  cursor:auto;
   align-items: center;
   /* flex-wrap: wrap; */
-  margin: 0 0 0.5rem 0 ;
+  margin: .5rem ;
 
   &:hover{
-    background-color: rgb(185, 198, 209);
+    background-color: rgb(228, 238, 247);
   }
+}
+
+.history{
+  background-color: rgb(162, 176, 187);
+  min-width: 13rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: antiquewhite; */
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
