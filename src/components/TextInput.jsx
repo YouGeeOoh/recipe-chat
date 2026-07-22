@@ -15,8 +15,7 @@ function TextInput(
     
     {
  
-   
-  return (
+    return (
         <textarea
             onKeyDown={onKeyDown}
             rows={1}

@@ -10,6 +10,8 @@ import { getAnswerFromAI } from './ai';
 import History from './History';
 import Pearl from './components/Pearl';
 import IngredientsList from './components/IngredientsList';
+import NewChat from './NewChat';
+import { Outlet } from 'react-router-dom';
 
 
 function Home() {
@@ -29,7 +31,7 @@ function Home() {
       {
         id: currentChatId,
         title: "",
-        message : []
+        messages : []
       };
 
 
@@ -67,6 +69,7 @@ function Home() {
 }
 
 function deleteChat(id){
+  console.log("deleteChat")
   setHistory(prev => prev.filter(history => history.id !==id))
 }
 
@@ -98,7 +101,7 @@ function deleteChat(id){
       content : generatedRecipe
       }
       const updatedMessages = [
-      ...currentChat.message,
+      ...currentChat.messages,
       userMessage,
       assistantMessage
     ];
@@ -113,7 +116,7 @@ function deleteChat(id){
             chat.id === currentChatId
               ? {
                   ...chat,
-                  message: updatedMessages
+                  messages: updatedMessages
                 }
               : chat
           );
@@ -137,43 +140,38 @@ function deleteChat(id){
     }, [history]);
 
    function newChat() {
-      setCurrentChatId(crypto.randomUUID());
-      setShowForm(true);
-      setIngredients([]);
+     setCurrentChatId(crypto.randomUUID());
+     setShowForm(true);
+     setIngredients([]);
+     console.log("newchat");
   }
 
   return (
 
     <div className='container'>
-      
-      <div className="history">
-        {<Button onClick={newChat} title= "new chat"/>}
 
-        <History history={history} onClick={deleteChat}/>
-        </div> 
+      <History history={history} newChat={newChat} deleteChat={deleteChat} />
+    
+        <Outlet
+        context={{
+          ingredients,
+          history,
+          generateRecipe,
+          country,
+          handleKeyDown,
+          autoGrow,
+          removeIngredient,
+          currentChat,
+          text,
+          inputRef,
+          showForm,
+          addingItems,
+          getCountry,
+          newChat,
+        }}
+      />
 
-      <div className="sub-container">
-          {/* <Header icon={chefIcon} title={"RECIPE AI"}/> */}
-
-        <Chat instructions={currentChat?.messages || []} />
-
-        <IngredientsList ingredients={ingredients} onClick={removeIngredient}/>
-
-        {showForm && <form className='textInput-container' onSubmit={generateRecipe}>
-          
-        <TextInput 
-              onKeyDown = {handleKeyDown}
-              onChange = {autoGrow}
-              value ={text}
-              ref = {inputRef}
-        />
-        <Button onClick={addingItems} title= "Add Item"/>
-        <Select country={country} onChange={getCountry}/>
-
-        {ingredients.length > 3 && <Button onClick={generateRecipe} title = "Get Recipe" color="rgb(255, 60, 60)"  />}
-        </form>}
-
-        </div>
+        {/* </div> */}
     </div>
     
   );

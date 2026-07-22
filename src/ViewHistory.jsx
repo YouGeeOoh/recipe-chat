@@ -1,22 +1,26 @@
-  import React from 'react'
-  import { useParams } from 'react-router-dom'
+import { useParams, useOutletContext } from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
+import NewChat from "./NewChat";
 
+function ViewHistory() {
+  const { chatId } = useParams();
+  const { history } = useOutletContext();
 
-  function ViewHistory(instructions) {
-    const params = useParams()
-    return (
-      <div className="chat-container">{
-          instructions.map(instruction=>{
-            <div className="chat-container"key={instruction.id} >
-            { instruction.content.map(chat=>{
-                {instruction.content - params} 
-              })} 
-            </div>
-          })}
-        </div>
+  const currentChat = history.find(chat => chat.id === chatId);
 
-        // <p> History </p>
-    )
+  if (!currentChat) {
+    return <NewChat/>
   }
 
-  export default ViewHistory
+  return (
+    <div className="chat-container">
+      {currentChat.messages.map(message => (
+        <div key={message.id} className={message.role}>
+                <ReactMarkdown>{message.content}</ReactMarkdown>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default ViewHistory

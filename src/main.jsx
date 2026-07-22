@@ -7,16 +7,27 @@ import App2 from "./App2.jsx"
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import ErrorPage from './ErrorPage.jsx'
 import History from './History.jsx'
-// import 
+import Home from './Home.jsx'
+import NewChat from './NewChat.jsx'
+
 
 const router = createBrowserRouter([
-  {
-    path: '/', 
-    element: <App2/>,
-    errorElement: <ErrorPage/>
-  },
-
-
+    {
+        path: "/",
+        element: <Home/>,
+        errorElement: <ErrorPage/>,
+        children: [
+            {
+                index: true,
+                element: <NewChat />
+            },
+            
+            {
+                path: "history/:chatId",
+                element: <ViewHistory />
+            }
+        ]
+    }
 ]);
 
 createRoot(document.getElementById('root')).render(
