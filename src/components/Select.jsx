@@ -1,15 +1,27 @@
 import React, { useState } from 'react'
-// import {getCountries} from 'country-list'
+import countries from "i18n-iso-countries";
+import en from "i18n-iso-countries/langs/en.json";
 
 
 function Select({country, onChange}) {
+  countries.registerLocale(en);
+  
+  const countryList = Object.entries(countries.getNames("en"))
+    .map(([code, name]) => ({
+      code,
+      name
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  
   
   return (
-    <select name="country" id="country" value={country} onChange={onChange}>
-        <option value="nigeria">Nigeria</option>
-        <option value="ghana">Ghana</option>
-        <option value="usa">USA</option>
-    </select>
+   <select value={country} onChange={onChange}>
+    {countryList.map(({ code, name }) => (
+      <option key={code} value={name.toLowerCase()}>
+      {name}
+    </option>
+  ))}
+</select>
   );
 }
 

@@ -32,7 +32,7 @@ function NewChat() {
   } = useOutletContext();
   return (
     <div className="sub-container">
-          {/* <Header icon={chefIcon} title={"RECIPE AI"}/> */}
+        {/* <Header icon={chefIcon} title={"RECIPE AI"}/> */}
         <Chat instructions={currentChat?.messages || []} />
 
         <IngredientsList ingredients={ingredients} removeIngredient={removeIngredient}/>
@@ -45,10 +45,12 @@ function NewChat() {
               value ={text}
               ref = {inputRef}
         />
+        <div className="buttons-container">
         <Button onClick={addingItems} title= "Add Item"/>
         <Select country={country} onChange={getCountry}/>
-
         {ingredients.length > 3 && <Button onClick={generateRecipe} title = "Get Recipe" color="rgb(255, 60, 60)"  />}
+        </div>
+
         </form>}
 
         </div>

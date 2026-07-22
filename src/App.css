@@ -7,6 +7,13 @@
   /* background-color: rgb(215, 232, 247); */
 }
 
+.sub-container{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 header{
   background-color: rgba(0, 0, 0, 0.945);
   width: 100%;
@@ -24,16 +31,20 @@ header img{
   width: 3rem;
 }
 
-.textInput-container{
-  width: 100%;
+.textInput-container, .button-container{
+  width: 80%;
   height: auto;
-  padding:3rem;
+  padding:2rem;
+  display: flex;
+  flex-direction: column;
+}
 
-
+.button-container{
+  flex-direction: row;
 }
 
 textarea{
-  width: 100%;
+  width: 80%;
   min-height: 3rem;
   overflow: hidden;
   resize: none;
@@ -41,6 +52,7 @@ textarea{
   border-radius: 1rem;
   background-color: rgb(237, 240, 243);
   padding: 1rem;
+  /* flex-direction: column; */
 }
 
 button{
@@ -196,7 +208,8 @@ li{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: antiquewhite; */
+  overflow-y: hidden;
+
 }
 
 a{

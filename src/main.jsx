@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import ViewHistory from './ViewHistory.jsx'
-import App2 from "./App2.jsx"
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import ErrorPage from './ErrorPage.jsx'
 import History from './History.jsx'
@@ -14,7 +13,7 @@ import NewChat from './NewChat.jsx'
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home/>,
+        element: <App/>,
         errorElement: <ErrorPage/>,
         children: [
             {

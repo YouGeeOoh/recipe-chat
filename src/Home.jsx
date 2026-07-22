@@ -11,10 +11,11 @@ import History from './History';
 import Pearl from './components/Pearl';
 import IngredientsList from './components/IngredientsList';
 import NewChat from './NewChat';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 
 function Home() {
+    const navigate = useNavigate();
     const [ingredients, setIngredients] = useState([]);
     const inputRef = useRef(null);
     const formRef = useRef(null);
@@ -139,10 +140,12 @@ function deleteChat(id){
       localStorage.setItem("history", JSON.stringify(history));
     }, [history]);
 
+
    function newChat() {
      setCurrentChatId(crypto.randomUUID());
      setShowForm(true);
      setIngredients([]);
+     navigate('/');
      console.log("newchat");
   }
 
@@ -151,7 +154,7 @@ function deleteChat(id){
     <div className='container'>
 
       <History history={history} newChat={newChat} deleteChat={deleteChat} />
-    
+
         <Outlet
         context={{
           ingredients,

@@ -5,39 +5,27 @@ import Button from './components/Button';
 
 
 function History({ history, newChat, deleteChat }) {
-const navigate = useNavigate();
-//   return (
-//   history.map(chat => (
-//       <Link to = {`history/${chat.id}`}>
-//       <div className="history-card">
-//         {chat.title.slice(0, 20) + "..."}
-      // <div className="icon">
-      //      <FaTrashAlt 
-      //     className='cancel'
-      //     onClick={()=>{onClick(chat.id)}}
-      //   />
-      // </div>
-//     </div>
-//     </Link>
-// )));
+  const navigate = useNavigate();
+
   return(
     <div className="history">
       <Button onClick={newChat} title = "new chat" />
       
-   {   history.map(chat=>(
-        <Link to = {`/history/${chat.id}`}>
-          <div className="history-card" key={chat.id}>
-            {chat.title.slice(0,20) + "..."}
-              <div className="icon">
-              <FaTrashAlt 
-                className='cancel'
+    {history.map(chat=>(
+          <Link to = {`/history/${chat.id}`}>
+            <div className="history-card" key={chat.id}>
+              {chat.title.slice(0,20) + "..."}
+            <div className="icon" key={chat.id}>
+                <FaTrashAlt 
+                  className='cancel'
                 onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+
                 deleteChat(chat.id);
-                if (location.pathname === `/history/${chat.id}`) {
-                  navigate("/");
-                }}}
+                newChat();      // Reset your state
+                navigate("/");  // Go to the New Chat page
+              }}
               />
             </div>
           </div>
