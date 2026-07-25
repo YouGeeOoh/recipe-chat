@@ -32,7 +32,7 @@ function NewChat() {
   } = useOutletContext();
   return (
     <div className="sub-container">
-        {/* <Header icon={chefIcon} title={"RECIPE AI"}/> */}
+        <Header icon={chefIcon} title={"RECIPE AI"}/>
         <Chat instructions={currentChat?.messages || []} />
 
         <IngredientsList ingredients={ingredients} removeIngredient={removeIngredient}/>
