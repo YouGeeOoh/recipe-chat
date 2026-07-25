@@ -1,4 +1,4 @@
-import { useState, React, useRef, useEffect} from 'react'
+import { useState, React, useRef, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom';
 import './App.css'
 import Chat from './Chat';
@@ -28,32 +28,33 @@ function NewChat() {
     showForm,
     addingItems,
     getCountry,
-    
+
   } = useOutletContext();
+
   return (
     <div className="sub-container">
-        <Header icon={chefIcon} title={"RECIPE AI"}/>
-        <Chat instructions={currentChat?.messages || []} />
+      <Header icon={chefIcon} title={"RECIPE AI"} />
+      <Chat instructions={currentChat?.messages || []} />
 
-        <IngredientsList ingredients={ingredients} removeIngredient={removeIngredient}/>
+      <IngredientsList ingredients={ingredients} removeIngredient={removeIngredient} />
 
-        {showForm && <form className='textInput-container' onSubmit={generateRecipe}>
-          
-        <TextInput 
-              onKeyDown = {handleKeyDown}
-              onChange = {autoGrow}
-              value ={text}
-              ref = {inputRef}
+      {showForm && <form className='textInput-container' onSubmit={generateRecipe}>
+
+        <TextInput
+          onKeyDown={handleKeyDown}
+          onChange={autoGrow}
+          value={text}
+          ref={inputRef}
         />
         <div className="buttons-container">
-        <Button onClick={addingItems} title= "Add Item"/>
-        <Select country={country} onChange={getCountry}/>
-        {ingredients.length > 3 && <Button onClick={generateRecipe} title = "Get Recipe" color="rgb(255, 60, 60)"  />}
+          <Button onClick={addingItems} title="Add Item" />
+          <Select country={country} onChange={getCountry} />
+          {ingredients.length > 3 && <Button onClick={generateRecipe} title="Get Recipe" color="rgb(255, 60, 60)" />}
         </div>
 
-        </form>}
+      </form>}
 
-        </div>
+    </div>
   )
 }
 

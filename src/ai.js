@@ -55,7 +55,7 @@ const groq = new Groq({
 });
 
 
-export async function getAnswerFromAI(ingredients, country) {
+export async function getAnswerFromAI(ingredients, country, content) {
     // const country = "Nigeria";
     try {
         const response = await groq.chat.completions.create({
@@ -67,14 +67,7 @@ export async function getAnswerFromAI(ingredients, country) {
                 },
                 {
                     role: "user",
-                    content: `
-                        I am in ${country}.
-
-                        I have these ingredients:
-                        ${ingredients.join(", ")}
-
-                        What meals can I make?
-                        `
+                    content: content
                 },
             ],
         });
